@@ -5,8 +5,6 @@ function getComputerChoice() {
     return randomNumber;
     //console.log(randomNumber);
 }
-const compChoice = getComputerChoice().toLowerCase();
-console.log("Computer choice: ",compChoice);
 
 
 
@@ -16,27 +14,35 @@ function getHumanChoice() {
     return choice;    
     //alert(choice)
 }
-const humanChoice = getHumanChoice().toLowerCase();
-console.log("Human choice: ",humanChoice);
 
 
 
 //round block
-function playRound(humanChoice, compChoice) {
-    let humanScore = 0;
-    let computerScore = 0;
-    for(let i = 1; i<=5; i++){
-        if ((humanChoice == "rock" && compChoice == "rock") || (humanChoice == "paper" && compChoice == "paper") || (humanChoice == "scissor" && compChoice == "rock")) {
-            alert("Human choice: " + humanChoice + "\nComputer choice: " + compChoice + "\nYou've Tied!!!")
-        }
-        else if ((humanChoice == "rock" && compChoice == "scissor") || (humanChoice == "paper" && compChoice == "rock") || (humanChoice == "scissor" && compChoice == "paper")){
-            humanScore++;
-            alert("Human choice: " + humanChoice + "\nComputer choice: " + compChoice + "\nHuman Wins! congrats") //human win scenario
-        }    
-        else if ((humanChoice == "scissor" && compChoice == "rock") || (humanChoice == "rock" && compChoice == "paper") || (humanChoice == "paper" && compChoice == "scissor")) {
-            computerScore++;
-            alert("Human choice: " + humanChoice + "\nComputer choice: " + compChoice + "\nComputer wins! sorry!") //comp win scenario
-        } 
-    }     
+
+let humanScore = 0;
+let computerScore = 0;
+function playRound(x, y){
+        if ((x == "rock" && y == "rock") || (x == "paper" && y == "paper") || (x == "scissor" && y == "scissor")) {
+        alert("Human choice: " + x + "\nComputer choice: " + y + "\nYou've Tied!!!");
+    }
+    else if ((x == "rock" && y == "scissor") || (x == "paper" && y == "rock") || (x == "scissor" && y == "paper")) {
+        humanScore++;
+        alert("Human choice: " + x + "\nComputer choice: " + y + "\nHuman Wins! congrats"); // human win scenario
+    }    
+    else if ((x == "scissor" && y == "rock") || (x == "rock" && y == "paper") || (x == "paper" && y == "scissor")) {
+        computerScore++;
+        alert("Human choice: " + x + "\nComputer choice: " + y + "\nComputer wins! sorry!"); // comp win scenario
+    } 
+
 }
-playRound(humanChoice, compChoice);
+
+for(let i = 1; i<=5; i++){
+    let hc = getHumanChoice().toLowerCase();
+    let cc = getComputerChoice().toLowerCase();
+    playRound(hc, cc);
+}
+
+//alert("Human Score: " + humanScore + "\nComputer Score: " + computerScore)
+if(humanScore === computerScore) alert("Human Score: " + humanScore + "\nComputer Score: " + computerScore + "\nIts tied.")
+else if (humanScore > computerScore) alert("Human Score: " + humanScore + "\nComputer Score: " + computerScore + "\nHuman wins! Congrats")
+else if(humanScore < computerScore) alert("Human Score: " + humanScore + "\nComputer Score: " + computerScore + "\nComputer Wins!")        
